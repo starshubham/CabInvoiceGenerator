@@ -91,11 +91,12 @@ namespace CabInvoiceGenerator
         /// <param name="rides"></param>
         /// <returns></returns>
         /// <exception cref="CabInvoiceException"></exception>
-        public InvoiceSummary CalculateFare(Ride[] rides)
+        public double CalculateFare(Ride[] rides)
         {
             double totalFare = 0;
             try
             {
+                //calculating total fare for all rides
                 foreach (Ride ride in rides)
                 {
                     totalFare += this.CalculateFare(ride.distance, ride.time);
@@ -108,7 +109,7 @@ namespace CabInvoiceGenerator
                     throw new CabInvoiceException(CabInvoiceException.ExceptionType.NULL_RIDES, "Rides Are Null");
                 }
             }
-            return new InvoiceSummary(rides.Length, totalFare);
+            return totalFare;
         }
 
         /// <summary>
@@ -139,17 +140,17 @@ namespace CabInvoiceGenerator
         /// <param name="userId"></param>
         /// <returns></returns>
         /// <exception cref="CabInvoiceException"></exception>
-        public InvoiceSummary GetInvoiceSummary(string userId)
-        {
-            try
-            {
-                return this.CalculateFare(rideRepository.GetRides(userId));
-            }
-            catch (CabInvoiceException)
-            {
-                throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_USER_ID, "Invalid User Id");
-            }
-        }
+        //public InvoiceSummary GetInvoiceSummary(string userId)
+        //{
+        //    try
+        //    {
+        //        return this.CalculateFare(rideRepository.GetRides(userId));
+        //    }
+        //    catch (CabInvoiceException)
+        //    {
+        //        throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_USER_ID, "Invalid User Id");
+        //    }
+        //}
 
     }
 }

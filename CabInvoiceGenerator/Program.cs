@@ -15,8 +15,13 @@ namespace CabInvoiceGenerator
 
             // UC2 : Total fare for multiple drive
             Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
-            double totalFare = invoiceGenerator.CalculateFare(rides);
+            InvoiceSummary totalFare = invoiceGenerator.CalculateFare(rides);
             Console.WriteLine("\nTotal Fare Of Journey for multiple rides : " + totalFare);
+
+            //// UC2 : Inhanced Invoice should return 1.Total no of rides, 2.Total Fare, 3.Average Fare Per Rides
+            //Ride[] rides1 = { new Ride(2.0, 5), new Ride(0.1, 1) };
+            //double totalFare1 = invoiceGenerator.CalculateFare(rides1);
+            //Console.WriteLine("\nTotal Fare Of Journey for multiple rides : " + totalFare1);
         }
     }
 }

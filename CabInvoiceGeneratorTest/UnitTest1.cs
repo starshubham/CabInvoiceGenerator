@@ -28,22 +28,39 @@ namespace CabInvoiceGeneratorTest
         }
 
         /// <summary>
-        /// UC2 : Test case for checking total fare for multiple rides.
+        /// UC2 : Test case for calculate fare function for multiple rides summary.
         /// </summary>
         [Test]
-        public void GivenMultipleRidesShouldReturnInvoiceSummary()
+        public void GivenMultipleRidesShouldReturnTotalFare()
         {
             // Creating Instance of InvoiceGenerator For Normal Ride.
             //Arrange
             invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
             Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
-            double expected = 30;
 
             //Act
-            double totalFare = invoiceGenerator.CalculateFare(rides);
+            InvoiceSummary summary = invoiceGenerator.CalculateFare(rides);
+            InvoiceSummary expectedSummary = new InvoiceSummary(2, 30.0);
 
             //Assert
-            Assert.AreEqual(expected, totalFare);
+            Assert.AreEqual(expectedSummary, summary);
         }
+
+        ////UC3 : Test case for checking calculate fare function for multiple rides summary
+        //[Test]
+        //public void GivenMultipleRidesShouldReturnInvoiceSummary()
+        //{
+        //    //AAA method
+        //    //Arrange
+        //    InvoiceGenerator invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
+        //    Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
+
+        //    //Act
+        //    InvoiceSummary summary = invoiceGenerator.CalculateFarefor(rides);
+        //    InvoiceSummary expectedSummary = new InvoiceSummary(2, 30.0);
+
+        //    //Assert
+        //    Assert.AreEqual(expectedSummary, summary);
+        //}
     }
 }

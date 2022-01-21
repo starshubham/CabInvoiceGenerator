@@ -47,7 +47,7 @@ namespace CabInvoiceGeneratorTest
         }
 
         /// <summary>
-        /// TestCase for Checking Calculate Fare Function For Minimum Time And Distance
+        /// UC3 : TestCase for Checking Calculate Fare Function For Minimum Time And Distance
         /// </summary>
         [Test]
         public void GivenLessDistanceOrTimeShouldReturnMinimumFare()
@@ -63,6 +63,29 @@ namespace CabInvoiceGeneratorTest
 
             //Asserting values
             Assert.AreEqual(expected, fare, time);
+        }
+
+        /// <summary>
+        /// UC4 : Given Invalid RideType Should Throw Custom Exception
+        /// </summary>
+        [Test]
+        public void GivenInvalidRideTypeShouldThrowCustomException()
+        {
+            //Creating Instance of InvoiceGenerator
+            invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
+            double distance = 2.0;
+            int time = 5;
+            string expected = "Invalid Ride Type";
+            try
+            {
+                //Calculating Fare
+                double fare = invoiceGenerator.CalculateFare(distance, time);
+            }
+            catch (CabInvoiceException exception)
+            {
+                //Asserting Values
+                Assert.AreEqual(expected, exception);
+            }
         }
     }
 }

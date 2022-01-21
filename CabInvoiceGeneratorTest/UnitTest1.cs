@@ -31,7 +31,7 @@ namespace CabInvoiceGeneratorTest
         /// UC2 : Test case for calculate fare function for multiple rides summary.
         /// </summary>
         [Test]
-        public void GivenMultipleRidesShouldReturnTotalFare()
+        public void GivenMultipleRidesShouldReturnInvoiceSummary()
         {
             // Creating Instance of InvoiceGenerator For Normal Ride.
             //Arrange
@@ -46,6 +46,23 @@ namespace CabInvoiceGeneratorTest
             Assert.AreEqual(expectedSummary, summary);
         }
 
-        
+        /// <summary>
+        /// TestCase for Checking Calculate Fare Function For Minimum Time And Distance
+        /// </summary>
+        [Test]
+        public void GivenLessDistanceOrTimeShouldReturnMinimumFare()
+        {
+            //Creating Instance of InvoiceGenerator for Normal Ride
+            invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
+            double distance = 0.1;
+            int time = 1;
+
+            //Calculating Fare
+            double fare = invoiceGenerator.CalculateFare(distance, time);
+            double expected = 5;
+
+            //Asserting values
+            Assert.AreEqual(expected, fare, time);
+        }
     }
 }

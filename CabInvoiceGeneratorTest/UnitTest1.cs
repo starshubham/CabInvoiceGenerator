@@ -9,7 +9,7 @@ namespace CabInvoiceGeneratorTest
         InvoiceGenerator invoiceGenerator = null;
 
         /// <summary>
-        /// TestCase-1 : For Checking Calculate Fare Function.
+        /// UC1 : Test case for checking total fare function.
         /// </summary>
         [Test]
         public void GivenDistanceAndTimeShouldReturnTotalFare()
@@ -27,6 +27,23 @@ namespace CabInvoiceGeneratorTest
             Assert.AreEqual(expected, fare);
         }
 
-        
+        /// <summary>
+        /// UC2 : Test case for checking total fare for multiple rides.
+        /// </summary>
+        [Test]
+        public void GivenMultipleRidesShouldReturnInvoiceSummary()
+        {
+            // Creating Instance of InvoiceGenerator For Normal Ride.
+            //Arrange
+            invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
+            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
+            double expected = 30;
+
+            //Act
+            double totalFare = invoiceGenerator.CalculateFare(rides);
+
+            //Assert
+            Assert.AreEqual(expected, totalFare);
+        }
     }
 }

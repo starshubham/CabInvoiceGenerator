@@ -1,0 +1,6 @@
+.vs/
+bin/
+obj/
+CabInvoiceGenerator.sln
+CabInvoiceGenerator.csproj
+CabInvoiceGeneratorTest.csproj
